@@ -38,9 +38,9 @@ jobs:
       - name: Run Master Pipeline Execution (Safe Mode)
         run: |
           export PYTHONPATH=src:.
-          python src/master_pipeline.py || python main.py || echo "Pipeline execution skipped or requires mock data"
+          python src/master_pipeline.py || python main.py || echo "Pipeline execution skipped"
 
-      - name: Run Pytest Suite
+      - name: Run Pytest Suite (Verbose Tracing)
         run: |
           export PYTHONPATH=src:.
-          pytest tests/ --cov=src --cov-report=term-missing
+          pytest tests/ -v --tb=short --cov=src --cov-report=term-missing
